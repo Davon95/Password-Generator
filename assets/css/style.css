@@ -50,6 +50,11 @@ header {
   height: 2px;
 }
 
+.list-no-bullet {
+  list-style: none;
+  padding: 0;
+}
+
 .card-body {
   min-height: 100px;
 }
@@ -66,6 +71,7 @@ header {
   height: 2px;
 }
 
+.card-
 .card-footer::after {
   content: " ";
   display: block;
@@ -116,6 +122,10 @@ button[disabled] {
   border-radius: 6px;
   resize: none;
   overflow: hidden;
+}
+
+.checkbox {
+  float: right;
 }
 
 @media (max-width: 690px) {
