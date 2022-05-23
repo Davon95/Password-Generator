@@ -11,7 +11,7 @@ function generatePassword() {
   var userInput = prompt("Choose password length between 8-128 characters.");
   var characterBox = "";
   var password = "";
-  debugger;
+  //debugger;
   // Add conditional statements on character limits
   if (userInput >= 8 && userInput <= 128) {
     upperCase = confirm("Do you want to inlude a Uppercase?");
@@ -43,7 +43,7 @@ function generatePassword() {
     }
     else if (userInput < 8 || userInput > 128) {
       alert("Please choose the appropriate length");
-      return userInput;
+      return generatePassword();
     }
   }
 }
