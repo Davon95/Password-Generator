@@ -11,38 +11,40 @@ function generatePassword() {
   var userInput = prompt("Choose password length between 8-128 characters.");
   var characterBox = "";
   var password = "";
+  debugger;
   // Add conditional statements on character limits
   if (userInput >= 8 && userInput <= 128) {
     upperCase = confirm("Do you want to inlude a Uppercase?");
     lowerCase = confirm("Do you want to inlude a Lowercase?");
     numbers = confirm("Do you want to inlude a Numbers?");
     specialChar = confirm("Do you want to inlude a Sepcial Character?");
-    if (upperCase === false && lowerCase === false && numbers === false && specialChar === false) {
-      alert("Please select at least one option.");
-      password = "Please try again. :("
+    if (upperCase === true && lowerCase === true && numbers === true && specialChar === true) {
+      //alert("Please select at least one option.");
+      if (upperCase) {
+        characterBox += passwordLetter.upperCase
+      }
+      if (lowerCase) {
+        characterBox += passwordLetter.lowerCase
+      }
+      if (numbers) {
+        characterBox += passwordLetter.numbers
+      }
+      if (specialChar) {
+        characterBox += passwordLetter.specialChar
+      }
+      for (let i = 0; i < userInput; i++) {
+        password += characterBox[Math.floor(Math.random() * characterBox.length)]
+      }
       return password;
     }
-    if (upperCase) {
-      characterBox += passwordLetter.upperCase
+    else if (upperCase === false && lowerCase === false && numbers === false && specialChar === false) { 
+      alert("Please select at least one option.");
+      return generatePassword();
     }
-    if (lowerCase) {
-      characterBox += passwordLetter.lowerCase
+    else if (userInput < 8 || userInput > 128) {
+      alert("Please choose the appropriate length");
+      return userInput;
     }
-    if (numbers) {
-      characterBox += passwordLetter.numbers
-    }
-    if (specialChar) {
-      characterBox += passwordLetter.specialChar
-    }
-    for (let i = 0; i < userInput; i++) {
-      password += characterBox[Math.floor(Math.random() * characterBox.length)]
-    } 
-    return password;  
-  } 
-  else if (userInput < 8 || userInput > 128) {
-    alert("Please choose the appropriate length");
-    password = "Please try again. >:("
-    return password;
   }
 }
 // Get references to the #generate element
