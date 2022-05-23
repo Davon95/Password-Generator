@@ -1,49 +1,58 @@
 // Assignment code here
-var upperCaseEl = document.getElementById('upperCaseLetter');
-var lowerCaseEl = document.getElementById('lowerCaseLetter');
-var numberEl = document.getElementById('numeric');
-var specialEl = document.getElementById('special');
-var lengthEl = document.getElementById('charLimit');
-var generateEl = document.getElementById('generate');
-
-var passwordGen = {
-  lower: lowerCaseEl,
-  upper: upperCaseEl,
-  number: numberEl,
-  special: specialEl,
-  length: lengthEl
+var passwordLetter = {
+  upperCase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lowerCase: "abcdefghijklmnopqrstuvwxyz",
+  numbers: "0123456789",
+  specialChar: "!@#$%^&*()_+"
 };
+
+// Created function for length and character checks
+function generatePassword() {
+  var userInput = prompt("Choose password length between 8-128 characters.");
+  var characterBox = "";
+  var password = "";
+  // Add conditional statements on character limits
+  if (userInput >= 8 && userInput <= 128) {
+    upperCase = confirm("Do you want to inlude a Uppercase?");
+    lowerCase = confirm("Do you want to inlude a Lowercase?");
+    numbers = confirm("Do you want to inlude a Numbers?");
+    specialChar = confirm("Do you want to inlude a Sepcial Character?");
+    if (upperCase === false && lowerCase === false && numbers === false && specialChar === false) {
+      alert("Please select at least one option.");
+    }
+    if (upperCase) {
+      characterBox += passwordLetter.upperCase
+    }
+    if (lowerCase) {
+      characterBox += passwordLetter.lowerCase
+    }
+    if (numbers) {
+      characterBox += passwordLetter.numbers
+    }
+    if (specialChar) {
+      characterBox += passwordLetter.specialChar
+    }
+    for (let i = 0; i < userInput; i++) {
+      password += characterBox[Math.floor(Math.random() * characterBox.length)]
+    } 
+    return password;  
+  } 
+  else if (userInput < 8 || userInput > 128) {
+    alert("Please choose the appropriate length");
+    return password;
+  }
+}
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword(lower, upper, number, special, length) { 
+function writePassword(password) {
+  var password = generatePassword();
   //var password = generatePassword("#generate");
   var passwordText = document.querySelector("#password");
   // Function here to generate password upon click of the button
-  var upper = upperCaseEl.checked;
-  var lower = lowerCaseEl.checked;
-  var number = numberEl.checked;
-  var special = specialEl.checked;
-  var length = lengthEl.value;
-  var checkBox = [upper, lower, number, special];
-  console.log(checkBox);
+
   passwordText.value = password;
-}
-
-
-function lowerCase() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
-
-function upperCase() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
-function number() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-function specialCharacters() {
-  return String.fromCharCode(Math.floor(Math.random() * 15) + 33);
 }
 
 // Add event listener to generate button
