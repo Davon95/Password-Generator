@@ -19,6 +19,8 @@ function generatePassword() {
     specialChar = confirm("Do you want to inlude a Sepcial Character?");
     if (upperCase === false && lowerCase === false && numbers === false && specialChar === false) {
       alert("Please select at least one option.");
+      password = "Please try again. :("
+      return password;
     }
     if (upperCase) {
       characterBox += passwordLetter.upperCase
@@ -39,6 +41,7 @@ function generatePassword() {
   } 
   else if (userInput < 8 || userInput > 128) {
     alert("Please choose the appropriate length");
+    password = "Please try again. >:("
     return password;
   }
 }
