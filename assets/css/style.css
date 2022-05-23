@@ -53,6 +53,7 @@ header {
 .list-no-bullet {
   list-style: none;
   padding: 0;
+  line-height: 50px;
 }
 
 .card-body {
@@ -125,6 +126,10 @@ button[disabled] {
 }
 
 .checkbox {
+  float: right; 
+}
+
+.textbox {
   float: right;
 }
 
